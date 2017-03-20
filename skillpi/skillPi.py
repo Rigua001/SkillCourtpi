@@ -26,12 +26,12 @@ while True:
     con, addr = sock.accept()
     print('Got connection from', addr)
     # if the ball hits while led signal is 0
-    if con.recv() and GPIO.input(hSensor) == True:
+    if con.recv(1024) == '0' and GPIO.input(hSensor) == True:
         os.system('killall omxplayer.bin')
         os.system('omxplayer -l hit.mp3')
         # hit+=1
     # if ball hits while led signal is 1
-    elif con.rcv() and GPIO.input(hSensor) == True:
+    elif con.rcv(1024) == '1' and GPIO.input(hSensor) == True:
         os.system('killall omxplayer.bin')
         os.system('omxplayer -l miss.mp3')
         # miss+=1
