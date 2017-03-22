@@ -18,13 +18,15 @@ GPIO.setup(hSensor, GPIO.IN)
 sock = socket.socket()
 
 host = socket.gethostname()
-port = 5000
+port = 23
 sock.bind((host, port))
 
 sock.listen(5)
 while True:
     con, addr = sock.accept()
     print('Got connection from', addr)
+    print(con.recv(1024))
+    os.system('cd /home/pi/SkillCourtStand')
     # if the ball hits while led signal is 0
     if con.recv(1024) == '0' and GPIO.input(hSensor) == True:
         os.system('killall omxplayer.bin')
@@ -35,6 +37,7 @@ while True:
         os.system('killall omxplayer.bin')
         os.system('omxplayer -l miss.mp3')
         # miss+=1
-
+    elif con.rcv(1024) == '4':
+        sock.close()
 
 
