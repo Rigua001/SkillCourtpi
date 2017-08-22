@@ -1,2 +1,2 @@
 # SkillCourtpi
-Allows the Raspberry pi to obtain information from app to output sound
+Allows the Raspberry pi to obtain information from app to output audio from youtube.
